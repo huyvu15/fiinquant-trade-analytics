@@ -19,12 +19,11 @@ load_dotenv('.env')
 username = os.getenv('username_h')
 password = os.getenv('password')
 
-print(username, password)
-
 client = FiinSession(username=username, password=password).login()
 
 tickers = ['HPG', 'SSI', 'VN30F1M', 'UPCOMINDEX']
-    
+# tickers = ['HOSE', 'HNX', 'UPCOM']
+
 data = client.Fetch_Trading_Data(
     realtime = False,
     tickers = tickers,    
@@ -34,4 +33,7 @@ data = client.Fetch_Trading_Data(
     from_date='2024-11-28 09:00',
 ).get_data()
 
-print(data)
+
+
+
+data.to_csv('data.csv', index=False)
